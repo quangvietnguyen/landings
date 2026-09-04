@@ -4,30 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Deepy &mdash; Master Your Attention. Protect Your Deep Flow.</title>
-  <meta name="description" content="Deepy is the deliberate deep work time-blocking and Mind Sweep application designed to separate high-leverage focus from shallow busywork." />
+  <meta name="description" content="Deepy is a minimalist, deliberate deep work time-blocking and Mind Sweep application designed to separate high-leverage focus from shallow busywork." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #070a11;
-      --bg-surface: #0e1422;
-      --bg-surface-elevated: #151f33;
-      --bg-glass: rgba(14, 20, 34, 0.75);
-      --border: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(56, 189, 248, 0.3);
-      --text-heading: #f8fafc;
-      --text-body: #94a3b8;
+      --bg: #ffffff;
+      --bg-surface: #f8fafc;
+      --bg-surface-elevated: #f1f5f9;
+      --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
+      --border-hover: #cbd5e1;
+      --text-heading: #0f172a;
+      --text-body: #334155;
       --text-muted: #64748b;
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.25);
-      --accent-indigo: #818cf8;
-      --accent-emerald: #34d399;
-      --accent-amber: #fbbf24;
+      --text-faint: #94a3b8;
+      --accent: #0f172a;
+      --accent-blue: #2563eb;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-purple: #7c3aed;
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
       --radius-xl: 28px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+      --shadow-lg: 0 20px 40px -12px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+      --shadow-mockup: 0 25px 60px -15px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.05);
     }
 
     * {
@@ -41,33 +46,36 @@
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", sans-serif;
       background-color: var(--bg);
       color: var(--text-body);
       line-height: 1.7;
-      font-size: 16px;
+      font-size: 15.5px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 100% 30%, rgba(129, 140, 248, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 0% 70%, rgba(56, 189, 248, 0.06) 0%, transparent 40%);
     }
 
-    /* Top Navigation */
+    /* Container */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
     .nav-wrapper {
       position: sticky;
       top: 0;
       z-index: 100;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      background: rgba(7, 10, 17, 0.75);
+      background: rgba(255, 255, 255, 0.85);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-container {
-      max-width: 1200px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 16px 24px;
       display: flex;
@@ -78,30 +86,29 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: var(--text-heading);
     }
 
     .brand-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #1e293b, #0f172a);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--text-heading);
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 18px;
-      color: var(--accent);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      font-size: 16px;
+      letter-spacing: -0.5px;
     }
 
     .brand-name {
-      font-weight: 800;
-      font-size: 20px;
-      letter-spacing: -0.5px;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.4px;
       color: var(--text-heading);
     }
 
@@ -113,7 +120,7 @@
     }
 
     .nav-links a {
-      color: var(--text-body);
+      color: var(--text-muted);
       text-decoration: none;
       font-size: 14.5px;
       font-weight: 500;
@@ -126,77 +133,63 @@
 
     .btn-nav {
       background: var(--text-heading);
-      color: #070a11 !important;
+      color: #ffffff !important;
       font-weight: 600 !important;
-      padding: 8px 18px;
-      border-radius: 9999px;
+      font-size: 13.5px !important;
+      padding: 8px 16px;
+      border-radius: 8px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease !important;
+      gap: 6px;
+      transition: all 0.15s ease !important;
     }
 
     .btn-nav:hover {
-      background: var(--accent);
+      background: #334155;
       transform: translateY(-1px);
-    }
-
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
     }
 
     /* Hero Section */
     .hero-section {
-      padding: 80px 0 100px;
+      padding: 80px 0 90px;
       text-align: center;
-      position: relative;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 16px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 5px 14px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: 9999px;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--text-body);
       margin-bottom: 24px;
     }
 
     .hero-badge-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
+      background: #10b981;
     }
 
     h1.hero-title {
-      font-size: 56px;
+      font-size: 52px;
       font-weight: 800;
-      letter-spacing: -2px;
+      letter-spacing: -1.8px;
       color: var(--text-heading);
-      line-height: 1.15;
-      max-width: 900px;
-      margin: 0 auto 22px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      line-height: 1.18;
+      max-width: 840px;
+      margin: 0 auto 20px;
     }
 
     p.hero-subtitle {
-      font-size: 19px;
-      color: var(--text-body);
-      max-width: 680px;
+      font-size: 18.5px;
+      color: var(--text-muted);
+      max-width: 650px;
       margin: 0 auto 36px;
       line-height: 1.6;
     }
@@ -205,50 +198,50 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
       margin-bottom: 24px;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-      color: #070a11;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
-      transition: all 0.2s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(56, 189, 248, 0.3);
-      background: #ffffff;
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      color: var(--text-heading);
-      padding: 14px 24px;
-      border-radius: 12px;
+      background: var(--text-heading);
+      color: #ffffff;
+      padding: 13px 26px;
+      border-radius: 10px;
       font-size: 15.5px;
       font-weight: 600;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.2s ease;
+      box-shadow: var(--shadow-md);
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: #1e293b;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--text-heading);
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: var(--bg-surface);
+      border-color: var(--border-hover);
     }
 
     .hero-trust-row {
@@ -267,100 +260,58 @@
       gap: 6px;
     }
 
-    /* Hero Mockup Frame */
-    .hero-mockup-wrapper {
+    /* Hero Mockup Showcase */
+    .hero-showcase {
       position: relative;
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 12px;
-      background: linear-gradient(180deg, rgba(56, 189, 248, 0.2) 0%, rgba(129, 140, 248, 0.05) 50%, transparent 100%);
-      border-radius: 36px;
-      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+      padding: 32px 20px 0;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      box-shadow: var(--shadow-md);
     }
 
     .mockup-display {
       display: flex;
       justify-content: center;
-      align-items: center;
-      position: relative;
+      align-items: flex-end;
       gap: 24px;
       overflow: hidden;
-      border-radius: 28px;
-      background: #090e18;
-      padding: 40px 20px 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 20px 0 0;
     }
 
-    .phone-mockup {
-      width: 320px;
-      border-radius: 44px;
-      border: 8px solid #1e293b;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
+    .device-card {
+      width: 290px;
+      border-radius: 36px 36px 0 0;
+      border: 8px solid #0f172a;
+      border-bottom: none;
+      box-shadow: var(--shadow-mockup);
       background: #000000;
       overflow: hidden;
-      position: relative;
-      z-index: 2;
-      transition: transform 0.3s ease;
+      transition: transform 0.25s ease;
     }
 
-    .phone-mockup:hover {
+    .device-card:hover {
       transform: translateY(-6px);
     }
 
-    .phone-screen {
+    .device-card img {
       width: 100%;
       height: auto;
       display: block;
     }
 
-    .phone-mockup.side-left {
-      width: 270px;
-      opacity: 0.65;
-      transform: perspective(1000px) rotateY(12deg) scale(0.92);
-      filter: blur(0.5px);
+    .device-card.flank-left {
+      width: 250px;
+      opacity: 0.85;
+      transform: scale(0.95);
     }
 
-    .phone-mockup.side-right {
-      width: 270px;
-      opacity: 0.65;
-      transform: perspective(1000px) rotateY(-12deg) scale(0.92);
-      filter: blur(0.5px);
-    }
-
-    /* Floating Metric Badges */
-    .floating-badge {
-      position: absolute;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 14px;
-      padding: 12px 18px;
-      color: var(--text-heading);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 13.5px;
-      font-weight: 600;
-    }
-
-    .floating-badge.badge-1 {
-      top: 15%;
-      left: 6%;
-      animation: floatSlow 6s ease-in-out infinite;
-    }
-
-    .floating-badge.badge-2 {
-      bottom: 25%;
-      right: 6%;
-      animation: floatSlow 6s ease-in-out infinite 3s;
-    }
-
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    .device-card.flank-right {
+      width: 250px;
+      opacity: 0.85;
+      transform: scale(0.95);
     }
 
     /* Stats Strip */
@@ -368,10 +319,10 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
-      padding: 60px 0;
+      padding: 56px 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      margin: 60px 0 100px;
+      margin: 70px 0 90px;
     }
 
     .stat-item {
@@ -380,7 +331,7 @@
     }
 
     .stat-num {
-      font-size: 36px;
+      font-size: 34px;
       font-weight: 800;
       color: var(--text-heading);
       letter-spacing: -1px;
@@ -393,36 +344,36 @@
       font-weight: 500;
     }
 
-    /* Feature Sections */
+    /* Feature Blocks */
     .feature-block {
-      padding: 80px 0;
+      padding: 70px 0;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 60px;
       align-items: center;
     }
 
     .feature-block.reversed {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 0.9fr 1.1fr;
     }
 
     .feature-tag {
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent);
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
       margin-bottom: 12px;
       display: inline-block;
     }
 
     .feature-title {
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 800;
-      letter-spacing: -1px;
+      letter-spacing: -0.8px;
       color: var(--text-heading);
       line-height: 1.25;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .feature-desc {
@@ -442,20 +393,23 @@
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      font-size: 15px;
-      color: var(--text-heading);
+      font-size: 14.5px;
+      color: var(--text-body);
+      line-height: 1.6;
     }
 
     .point-icon {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border-radius: 6px;
-      background: rgba(56, 189, 248, 0.15);
-      color: var(--accent);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-heading);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 11px;
+      font-weight: 700;
       flex-shrink: 0;
       margin-top: 2px;
     }
@@ -463,159 +417,150 @@
     .feature-visual {
       display: flex;
       justify-content: center;
-      position: relative;
     }
 
-    .visual-card {
-      background: var(--bg-surface);
+    .phone-frame {
+      width: 310px;
+      background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-      max-width: 420px;
-      position: relative;
-      overflow: hidden;
+      border-radius: 36px;
+      padding: 10px;
+      box-shadow: var(--shadow-lg);
     }
 
-    .visual-card img {
+    .phone-frame img {
       width: 100%;
-      border-radius: 20px;
+      border-radius: 26px;
       display: block;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
     }
 
-    /* Energy Zones Grid */
+    /* Circadian Energy Zones */
     .zones-section {
-      padding: 90px 0;
-      text-align: center;
+      padding: 80px 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 60px 0;
     }
 
     .section-header {
-      max-width: 680px;
-      margin: 0 auto 56px;
+      max-width: 640px;
+      margin: 0 auto 48px;
+      text-align: center;
     }
 
     .section-title {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 800;
-      letter-spacing: -1px;
+      letter-spacing: -0.8px;
       color: var(--text-heading);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .section-subtitle {
-      font-size: 17px;
-      color: var(--text-body);
+      font-size: 16px;
+      color: var(--text-muted);
     }
 
     .zones-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      text-align: left;
+      gap: 16px;
     }
 
     .zone-card {
-      background: var(--bg-surface);
+      background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 26px 22px;
-      position: relative;
-      transition: all 0.25s ease;
+      border-radius: 16px;
+      padding: 24px 20px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
     }
 
     .zone-card:hover {
-      border-color: var(--border-accent);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
     }
 
     .zone-badge {
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 4px 10px;
+      letter-spacing: 0.4px;
+      padding: 3px 8px;
       border-radius: 6px;
       display: inline-block;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .zone-1 .zone-badge { background: rgba(56, 189, 248, 0.15); color: var(--accent); }
-    .zone-2 .zone-badge { background: rgba(251, 191, 36, 0.15); color: var(--accent-amber); }
-    .zone-3 .zone-badge { background: rgba(52, 211, 153, 0.15); color: var(--accent-emerald); }
-    .zone-4 .zone-badge { background: rgba(129, 140, 248, 0.15); color: var(--accent-indigo); }
+    .zone-1 .zone-badge { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+    .zone-2 .zone-badge { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+    .zone-3 .zone-badge { background: #faf5ff; color: #6b21a8; border: 1px solid #e9d5ff; }
+    .zone-4 .zone-badge { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
 
     .zone-title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       color: var(--text-heading);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .zone-purpose {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
-      color: var(--text-body);
-      margin-bottom: 10px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
     }
 
     .zone-desc {
       font-size: 13px;
-      color: var(--text-muted);
+      color: var(--text-body);
       line-height: 1.55;
     }
 
-    /* Screenshots Gallery Carousel */
+    /* Screenshots Carousel */
     .gallery-section {
-      padding: 90px 0;
-      background: linear-gradient(180deg, transparent 0%, rgba(14, 20, 34, 0.5) 50%, transparent 100%);
+      padding: 80px 0;
     }
 
     .gallery-carousel {
       display: flex;
-      gap: 20px;
+      gap: 18px;
       overflow-x: auto;
-      padding: 20px 24px 40px;
+      padding: 16px 24px 36px;
       scroll-snap-type: x mandatory;
       scrollbar-width: thin;
-      scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
-    }
-
-    .gallery-carousel::-webkit-scrollbar {
-      height: 6px;
-    }
-
-    .gallery-carousel::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 9999px;
+      scrollbar-color: var(--border-hover) transparent;
     }
 
     .gallery-card {
-      flex: 0 0 280px;
+      flex: 0 0 260px;
       scroll-snap-align: center;
-      background: var(--bg-surface);
+      background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 12px;
-      transition: all 0.25s ease;
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
     }
 
     .gallery-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--border-accent);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-hover);
     }
 
     .gallery-card img {
       width: 100%;
-      border-radius: 16px;
+      border-radius: 14px;
       display: block;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
     }
 
     .gallery-caption {
-      padding: 12px 6px 4px;
+      padding: 10px 4px 2px;
       font-size: 13px;
       font-weight: 600;
       color: var(--text-heading);
@@ -624,15 +569,16 @@
 
     /* Comparison Table */
     .comparison-section {
-      padding: 90px 0;
+      padding: 70px 0;
     }
 
     .table-container {
-      background: var(--bg-surface);
+      background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
-      margin-top: 40px;
+      box-shadow: var(--shadow-sm);
+      margin-top: 36px;
     }
 
     .comp-table {
@@ -642,27 +588,27 @@
     }
 
     .comp-table th, .comp-table td {
-      padding: 18px 24px;
+      padding: 16px 22px;
       text-align: left;
       border-bottom: 1px solid var(--border);
     }
 
     .comp-table th {
-      background: rgba(255, 255, 255, 0.02);
-      font-size: 14px;
+      background: var(--bg-surface);
+      font-size: 13px;
       font-weight: 700;
       color: var(--text-heading);
-      letter-spacing: 0.5px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .comp-table th.col-highlight {
-      color: var(--accent);
-      background: rgba(56, 189, 248, 0.05);
+      background: #f1f5f9;
+      color: var(--text-heading);
     }
 
     .comp-table td.col-highlight {
-      background: rgba(56, 189, 248, 0.03);
+      background: #f8fafc;
       font-weight: 600;
       color: var(--text-heading);
     }
@@ -673,34 +619,34 @@
 
     /* FAQ Section */
     .faq-section {
-      padding: 80px 0 100px;
+      padding: 70px 0 90px;
     }
 
     .faq-accordion {
-      max-width: 800px;
+      max-width: 760px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     details {
-      background: var(--bg-surface);
+      background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
 
     details[open] {
-      border-color: rgba(255, 255, 255, 0.2);
-      background: var(--bg-surface-elevated);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--border-hover);
     }
 
     summary {
-      padding: 18px 24px;
+      padding: 16px 20px;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 15.5px;
       color: var(--text-heading);
       cursor: pointer;
       list-style: none;
@@ -714,83 +660,79 @@
 
     summary::after {
       content: "+";
-      font-size: 20px;
+      font-size: 18px;
       color: var(--text-muted);
-      transition: transform 0.2s ease;
     }
 
     details[open] summary::after {
       content: "−";
-      color: var(--accent);
     }
 
     .faq-body {
-      padding: 0 24px 22px 24px;
+      padding: 0 20px 18px 20px;
       color: var(--text-body);
-      font-size: 14.5px;
+      font-size: 14px;
       line-height: 1.65;
     }
 
-    /* CTA Box */
+    /* CTA Section */
     .cta-box {
-      margin: 40px 0 100px;
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(129, 140, 248, 0.1) 100%);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 28px;
-      padding: 64px 32px;
+      margin: 40px 0 90px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 56px 32px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
 
     .cta-box h2 {
-      font-size: 38px;
+      font-size: 32px;
       font-weight: 800;
       color: var(--text-heading);
-      margin-bottom: 14px;
-      letter-spacing: -1px;
+      margin-bottom: 12px;
+      letter-spacing: -0.8px;
     }
 
     .cta-box p {
-      font-size: 17px;
-      color: var(--text-body);
-      max-width: 580px;
-      margin: 0 auto 32px;
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 28px;
     }
 
     /* Footer */
     footer {
       border-top: 1px solid var(--border);
-      padding: 60px 0 40px;
-      font-size: 14px;
+      padding: 56px 0 36px;
+      font-size: 13.5px;
       color: var(--text-muted);
     }
 
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 48px;
+      gap: 36px;
+      margin-bottom: 40px;
     }
 
     .footer-brand p {
-      font-size: 14px;
-      color: var(--text-body);
-      margin-top: 12px;
-      max-width: 320px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      max-width: 300px;
     }
 
     .footer-col h4 {
       color: var(--text-heading);
-      font-size: 14.5px;
+      font-size: 14px;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .footer-col ul {
       list-style: none;
       display: grid;
-      gap: 10px;
+      gap: 9px;
     }
 
     .footer-col a {
@@ -800,12 +742,13 @@
     }
 
     .footer-col a:hover {
-      color: var(--accent);
+      color: var(--text-heading);
+      text-decoration: underline;
     }
 
     .footer-bottom {
       border-top: 1px solid var(--border);
-      padding-top: 28px;
+      padding-top: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -815,14 +758,14 @@
     }
 
     /* Responsive */
-    @media (max-width: 992px) {
-      .mockup-display .phone-mockup.side-left,
-      .mockup-display .phone-mockup.side-right {
+    @media (max-width: 900px) {
+      .mockup-display .device-card.flank-left,
+      .mockup-display .device-card.flank-right {
         display: none;
       }
       .feature-block, .feature-block.reversed {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 36px;
       }
       .feature-block.reversed .feature-visual {
         order: -1;
@@ -832,22 +775,19 @@
       }
       .stats-strip {
         grid-template-columns: 1fr 1fr;
-        gap: 32px;
+        gap: 28px;
       }
       .footer-grid {
         grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 600px) {
       h1.hero-title {
-        font-size: 36px;
+        font-size: 34px;
         letter-spacing: -1px;
       }
       .nav-links {
-        display: none;
-      }
-      .floating-badge {
         display: none;
       }
       .zones-grid {
@@ -857,7 +797,7 @@
         grid-template-columns: 1fr;
       }
       .cta-box h2 {
-        font-size: 28px;
+        font-size: 26px;
       }
       .footer-grid {
         grid-template-columns: 1fr;
@@ -892,61 +832,45 @@
     <div class="container">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        <span>Version 1.0 Available for iOS</span>
+        <span>Version 1.0 &bull; iOS &amp; Android</span>
       </div>
       
       <h1 class="hero-title">
-        Master Your Attention.<br />
-        <span class="gradient-text">Protect Your Deep Flow.</span>
+        Master your attention.<br />
+        Protect your deep flow.
       </h1>
       
       <p class="hero-subtitle">
-        The deliberate deep work time-blocking and Mind Sweep companion built to banish shallow busywork, align with your circadian peak, and end your workday in peace.
+        A deliberate time-blocking and Mind Sweep companion built to banish shallow busywork, align with your circadian peak, and end your workday in peace.
       </p>
 
       <div class="hero-actions">
         <a href="#download" class="btn-primary">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.05-1.82.93-2.87-.9.04-2.02.6-2.66 1.36-.57.66-.99 1.74-.86 2.76 1.01.08 2.01-.52 2.59-1.25z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.05-1.82.93-2.87-.9.04-2.02.6-2.66 1.36-.57.66-.99 1.74-.86 2.76 1.01.08 2.01-.52 2.59-1.25z"/></svg>
           <span>Download on App Store</span>
         </a>
         <a href="#features" class="btn-secondary">
-          <span>See How It Works &darr;</span>
+          <span>Explore Features &darr;</span>
         </a>
       </div>
 
       <div class="hero-trust-row">
-        <div class="trust-item">✓ 100% Offline-First SQLite</div>
+        <div class="trust-item">✓ 100% Offline SQLite Storage</div>
         <div class="trust-item">✓ Zero Cross-App Ad Tracking</div>
-        <div class="trust-item">✓ Local Focus Timers &amp; Alarms</div>
+        <div class="trust-item">✓ Local Timers &amp; Reminders</div>
       </div>
 
       <!-- Hero Mockup Showpiece -->
-      <div class="hero-mockup-wrapper">
-        <div class="floating-badge badge-1">
-          <span>⚡</span>
-          <div>
-            <div style="font-size: 11px; color: var(--text-muted);">SMART ENGINE</div>
-            <div>Time Conflict Auto-Adjust</div>
-          </div>
-        </div>
-
-        <div class="floating-badge badge-2">
-          <span>🔥</span>
-          <div>
-            <div style="font-size: 11px; color: var(--text-muted);">CONSISTENCY</div>
-            <div>14-Day Focus Streak</div>
-          </div>
-        </div>
-
+      <div class="hero-showcase">
         <div class="mockup-display">
-          <div class="phone-mockup side-left">
-            <img src="./assets/screenshots/1.png" alt="Deepy Mind Sweep Screen" class="phone-screen" />
+          <div class="device-card flank-left">
+            <img src="./assets/screenshots/1.png" alt="Deepy Mind Sweep Screen" />
           </div>
-          <div class="phone-mockup">
-            <img src="./assets/screenshots/4.png" alt="Deepy Time Blocking Schedule" class="phone-screen" />
+          <div class="device-card">
+            <img src="./assets/screenshots/4.png" alt="Deepy Time Blocking Schedule" />
           </div>
-          <div class="phone-mockup side-right">
-            <img src="./assets/screenshots/7.png" alt="Deepy Review and Shutdown Ritual" class="phone-screen" />
+          <div class="device-card flank-right">
+            <img src="./assets/screenshots/7.png" alt="Deepy Review and Shutdown Ritual" />
           </div>
         </div>
       </div>
@@ -962,11 +886,11 @@
       </div>
       <div class="stat-item">
         <div class="stat-num">100%</div>
-        <div class="stat-label">Offline Local Storage</div>
+        <div class="stat-label">Offline-First Privacy</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">0</div>
-        <div class="stat-label">Distraction Ad-Free UI</div>
+        <div class="stat-label">Distraction Ad-Free Design</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">4</div>
@@ -979,102 +903,102 @@
   <section id="features" class="container">
     <div class="feature-block">
       <div>
-        <span class="feature-tag">01 / CAPTURE INSTANTLY</span>
-        <h2 class="feature-title">Offload Distractions.<br />Protect Your Active Flow.</h2>
+        <span class="feature-tag">01 &bull; Instant Capture</span>
+        <h2 class="feature-title">Offload distractions.<br />Protect your active flow.</h2>
         <p class="feature-desc">
-          When a random thought, email reply, or urgent task pops into your mind, trying to remember it drains working memory. Deepy's <strong>Mind Sweep</strong> lets you dump thoughts in seconds without losing your focus.
+          When random thoughts or urgent requests pop up, keeping them in your head degrades cognitive bandwidth. Deepy's <strong>Mind Sweep</strong> allows you to rapidly dump thoughts in seconds without derailing your focus.
         </p>
         <div class="feature-points">
           <div class="feature-point">
             <div class="point-icon">✓</div>
-            <div><strong>Deep vs. Shallow Classification:</strong> Tag items instantly as high-leverage deep work or routine admin tasks.</div>
+            <div><strong>Deep vs. Shallow Tagging:</strong> Categorize immediately into high-leverage deep work or routine shallow tasks.</div>
           </div>
           <div class="feature-point">
             <div class="point-icon">✓</div>
-            <div><strong>One-Tap Deadline Presets:</strong> Assign deadlines with single taps (Tonight 9 PM, Tomorrow 9 AM, Friday, Weekend).</div>
+            <div><strong>One-Tap Deadline Presets:</strong> Assign deadlines effortlessly (Tonight 9 PM, Tomorrow 9 AM, Friday, Weekend).</div>
           </div>
           <div class="feature-point">
             <div class="point-icon">✓</div>
-            <div><strong>Drag-to-Schedule:</strong> Drag open loops directly into your timeline when you're ready to execute.</div>
+            <div><strong>Drag-to-Schedule:</strong> Seamlessly promote captured thoughts into your calendar schedule when ready.</div>
           </div>
         </div>
       </div>
       <div class="feature-visual">
-        <div class="visual-card">
+        <div class="phone-frame">
           <img src="./assets/screenshots/2.png" alt="Mind Sweep Fast Capture Interface" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Feature 2: Time Blocking & Conflict Engine -->
+  <!-- Feature 2: Time Blocking -->
   <section class="container">
     <div class="feature-block reversed">
       <div class="feature-visual">
-        <div class="visual-card">
+        <div class="phone-frame">
           <img src="./assets/screenshots/5.png" alt="Smart Time-Blocking and Conflict Resolution" />
         </div>
       </div>
       <div>
-        <span class="feature-tag">02 / DELIBERATE SCHEDULING</span>
-        <h2 class="feature-title">Time-Blocking Built for Real Life.</h2>
+        <span class="feature-tag">02 &bull; Deliberate Scheduling</span>
+        <h2 class="feature-title">Time-blocking built for real life.</h2>
         <p class="feature-desc">
-          Static calendars shatter the moment tasks run long. Deepy features an intelligent interval collision engine that detects overlapping blocks and auto-adjusts your schedule seamlessly.
+          Static calendars break when tasks take longer than expected. Deepy features an interval collision engine that detects overlapping blocks and offers 1-tap auto-adjustment.
         </p>
         <div class="feature-points">
           <div class="feature-point">
             <div class="point-icon">⚡</div>
-            <div><strong>Auto-Conflict Detection:</strong> Visual warning when time blocks clash, with a one-tap smart auto-adjust button.</div>
+            <div><strong>Overlap Auto-Adjust:</strong> Instant alert when blocks collide with a single button to snap into free slots.</div>
           </div>
           <div class="feature-point">
             <div class="point-icon">⚡</div>
-            <div><strong>Flexible Repeat Patterns:</strong> Schedule recurring daily routines, weekday work blocks, or weekly deep review sessions.</div>
+            <div><strong>Recurring Patterns:</strong> Set daily routines, weekday work blocks, or weekly review rituals.</div>
           </div>
           <div class="feature-point">
             <div class="point-icon">⚡</div>
-            <div><strong>Active Sprint Tracker:</strong> Live countdown banner indicating your active focus period and upcoming blocks.</div>
+            <div><strong>Active Sprint Banner:</strong> Live status indicators for ongoing deep focus sessions.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Feature 3: Circadian Focus Energy Zones -->
+  <!-- Circadian Energy Zones -->
   <section id="energy-zones" class="zones-section">
     <div class="container">
       <div class="section-header">
-        <span class="feature-tag">03 / CIRCADIAN BIOLOGY</span>
-        <h2 class="section-title">Work With Your Natural Energy Peaks</h2>
-        <p class="section-subtitle">Not all hours are created equal. Deepy maps your day into four physiological zones so you never waste peak cognitive energy on shallow admin tasks.</p>
+        <span class="feature-tag">03 &bull; Circadian Biology</span>
+        <h2 class="section-title">Work with your biological energy</h2>
+        <p class="section-subtitle">Deepy divides your day into four physiological zones so you never burn peak cognitive energy on routine paperwork.</p>
       </div>
 
       <div class="zones-grid">
         <div class="zone-card zone-1">
-          <span class="zone-badge">Zone 1 &bull; 06:00 - 09:00</span>
+          <span class="zone-badge">06:00 &ndash; 09:00</span>
           <div class="zone-title">Early Morning</div>
           <div class="zone-purpose">Priming &amp; Intention</div>
-          <p class="zone-desc">Review priorities, set daily goals, and warm up without reactive chat interruptions.</p>
+          <p class="zone-desc">Review your day, establish priorities, and prepare mentally before messages arrive.</p>
         </div>
 
         <div class="zone-card zone-2">
-          <span class="zone-badge">Zone 2 &bull; 09:00 - 13:00</span>
+          <span class="zone-badge">09:00 &ndash; 13:00</span>
           <div class="zone-title">Morning Deep</div>
           <div class="zone-purpose">Peak Cognitive Load</div>
-          <p class="zone-desc">Tackle complex architectural challenges, intense writing, and mission-critical code.</p>
+          <p class="zone-desc">Devote uninterrupted blocks to complex problem-solving, architectural design, and deep creative work.</p>
         </div>
 
         <div class="zone-card zone-3">
-          <span class="zone-badge">Zone 3 &bull; 13:00 - 17:00</span>
+          <span class="zone-badge">13:00 &ndash; 17:00</span>
           <div class="zone-title">Afternoon Flow</div>
           <div class="zone-purpose">Execution &amp; Momentum</div>
-          <p class="zone-desc">Iterative execution, pair collaboration, and maintaining high daily project velocity.</p>
+          <p class="zone-desc">Execute defined tasks, collaborate with teammates, and push ongoing projects over the finish line.</p>
         </div>
 
         <div class="zone-card zone-4">
-          <span class="zone-badge">Zone 4 &bull; 17:00 - 21:00</span>
+          <span class="zone-badge">17:00 &ndash; 21:00</span>
           <div class="zone-title">Evening Shallow</div>
           <div class="zone-purpose">Admin &amp; Wrap-Up</div>
-          <p class="zone-desc">Email triage, administrative syncs, and completing your daily Shutdown Ritual.</p>
+          <p class="zone-desc">Handle logistical syncs, email triage, and complete your daily Shutdown Ritual.</p>
         </div>
       </div>
     </div>
@@ -1084,41 +1008,41 @@
   <section class="container">
     <div class="feature-block">
       <div>
-        <span class="feature-tag">04 / RECOVERY &amp; PEACE OF MIND</span>
+        <span class="feature-tag">04 &bull; Recovery &amp; Closure</span>
         <h2 class="feature-title">The Workday Shutdown Ritual.</h2>
         <p class="feature-desc">
-          Chronic stress happens when you carry unresolved work thoughts into your evening. Deepy's structured <strong>Shutdown Ritual</strong> helps you close your day with total confidence.
+          Chronic burnout occurs when open loops follow you into your evening. Deepy's guided <strong>Shutdown Ritual</strong> helps you close your work in peace.
         </p>
         <div class="feature-points">
           <div class="feature-point">
             <div class="point-icon">✓</div>
-            <div><strong>Clear Open Loops:</strong> Capture any late-breaking ideas so they are safely stored for tomorrow.</div>
+            <div><strong>Clear Open Loops:</strong> Capture lingering thoughts so they are preserved for tomorrow.</div>
           </div>
           <div class="feature-point">
             <div class="point-icon">✓</div>
-            <div><strong>Preview Tomorrow:</strong> Glance at your upcoming schedule to eliminate morning decision fatigue.</div>
+            <div><strong>Preview Tomorrow:</strong> Glance at upcoming blocks to remove morning decision fatigue.</div>
           </div>
           <div class="feature-point">
             <div class="point-icon">✓</div>
-            <div><strong>Shutdown Day:</strong> Tap the shutdown button, close the app, and enjoy your evening fully disconnected.</div>
+            <div><strong>Mark Complete:</strong> Tap "Shutdown Day" to mentally disconnect and recharge.</div>
           </div>
         </div>
       </div>
       <div class="feature-visual">
-        <div class="visual-card">
+        <div class="phone-frame">
           <img src="./assets/screenshots/8.png" alt="Shutdown Ritual Complete Screen" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Screenshots Gallery -->
+  <!-- Screenshots Gallery Carousel -->
   <section id="gallery" class="gallery-section">
     <div class="container">
-      <div class="section-header" style="text-align: center;">
-        <span class="feature-tag">VISUAL TOUR</span>
-        <h2 class="section-title">Designed for Visual Clarity &amp; Flow</h2>
-        <p class="section-subtitle">Crafted with a distraction-free glassmorphic interface that gets out of your way.</p>
+      <div class="section-header">
+        <span class="feature-tag">Visual Tour</span>
+        <h2 class="section-title">Designed for clarity and focus</h2>
+        <p class="section-subtitle">A calm, distraction-free interface crafted to support your attention.</p>
       </div>
 
       <div class="gallery-carousel">
@@ -1128,26 +1052,26 @@
         </div>
         <div class="gallery-card">
           <img src="./assets/screenshots/2.png" alt="Fast Task Capture" />
-          <div class="gallery-caption">Quick Tagging &amp; Presets</div>
+          <div class="gallery-caption">Presets &amp; Categorization</div>
         </div>
         <div class="gallery-card">
-          <img src="./assets/screenshots/3.png" alt="Drag & Drop Kanban" />
+          <img src="./assets/screenshots/3.png" alt="Drag and Drop Kanban" />
           <div class="gallery-caption">Kanban Drag-to-Schedule</div>
         </div>
         <div class="gallery-card">
           <img src="./assets/screenshots/4.png" alt="Daily Timeline" />
-          <div class="gallery-caption">Protected Focus Timeline</div>
+          <div class="gallery-caption">Time-Blocked Timeline</div>
         </div>
         <div class="gallery-card">
           <img src="./assets/screenshots/5.png" alt="Smart Time Block Editor" />
-          <div class="gallery-caption">Overlap Auto-Resolution</div>
+          <div class="gallery-caption">Auto-Conflict Resolution</div>
         </div>
         <div class="gallery-card">
           <img src="./assets/screenshots/6.png" alt="Energy Zones Breakdown" />
           <div class="gallery-caption">Circadian Energy Zones</div>
         </div>
         <div class="gallery-card">
-          <img src="./assets/screenshots/7.png" alt="Weekly Analytics & Streaks" />
+          <img src="./assets/screenshots/7.png" alt="Weekly Analytics and Streaks" />
           <div class="gallery-caption">Deep Focus Ratio Analytics</div>
         </div>
         <div class="gallery-card">
@@ -1160,16 +1084,16 @@
 
   <!-- Comparison Section -->
   <section class="container comparison-section">
-    <div class="section-header" style="text-align: center;">
-      <span class="feature-tag">WHY DEEPY</span>
-      <h2 class="section-title">A Different Approach to Productivity</h2>
+    <div class="section-header">
+      <span class="feature-tag">Why Deepy</span>
+      <h2 class="section-title">Built for deliberate focus</h2>
     </div>
 
     <div class="table-container">
       <table class="comp-table">
         <thead>
           <tr>
-            <th>Feature / Philosophy</th>
+            <th>Dimension</th>
             <th>Generic To-Do Apps</th>
             <th class="col-highlight">Deepy</th>
           </tr>
@@ -1177,28 +1101,28 @@
         <tbody>
           <tr>
             <td><strong>Task Weighting</strong></td>
-            <td>All tasks treated equally (creates shallow busywork)</td>
-            <td class="col-highlight">Strict Deep vs. Shallow leverage separation</td>
+            <td>All tasks treated equally</td>
+            <td class="col-highlight">Deep Focus vs. Shallow task separation</td>
           </tr>
           <tr>
-            <td><strong>Planning Structure</strong></td>
-            <td>Infinite overwhelming checklists</td>
-            <td class="col-highlight">Protected time-blocked schedule &amp; energy zones</td>
+            <td><strong>Planning Mode</strong></td>
+            <td>Overwhelming endless checklists</td>
+            <td class="col-highlight">Protected time blocks &amp; energy zones</td>
           </tr>
           <tr>
-            <td><strong>Conflict Handling</strong></td>
-            <td>Manual reshuffling when blocks clash</td>
-            <td class="col-highlight">Automatic overlap detection &amp; smart snapping</td>
+            <td><strong>Collision Handling</strong></td>
+            <td>Manual reshuffling</td>
+            <td class="col-highlight">Automatic overlap detection &amp; smart snap</td>
           </tr>
           <tr>
             <td><strong>End of Day</strong></td>
-            <td>Endless unchecked boxes causing anxiety</td>
+            <td>Unchecked tasks causing evening stress</td>
             <td class="col-highlight">Guided Shutdown Ritual to disconnect in peace</td>
           </tr>
           <tr>
-            <td><strong>Privacy &amp; Ads</strong></td>
-            <td>Cloud tracking, ads, and third-party data broker SDKs</td>
-            <td class="col-highlight">100% Offline-first SQLite, no ad tracking</td>
+            <td><strong>Data Privacy</strong></td>
+            <td>Ad networks, third-party analytics trackers</td>
+            <td class="col-highlight">100% Offline SQLite, zero ad tracking</td>
           </tr>
         </tbody>
       </table>
@@ -1207,53 +1131,51 @@
 
   <!-- FAQ Section -->
   <section id="faq" class="container faq-section">
-    <div class="section-header" style="text-align: center;">
-      <span class="feature-tag">FREQUENTLY ASKED QUESTIONS</span>
-      <h2 class="section-title">Got Questions? We’ve Got Answers.</h2>
+    <div class="section-header">
+      <span class="feature-tag">Frequently Asked Questions</span>
+      <h2 class="section-title">Common questions</h2>
     </div>
 
     <div class="faq-accordion">
       <details open>
         <summary>Can I use Deepy without creating an account?</summary>
         <div class="faq-body">
-          Yes! Deepy features a full Offline / Guest mode. Your schedules, tasks, and streaks are stored locally on your device via SQLite. You only need to sign in if you wish to sync data across multiple devices.
+          Yes! Deepy features full Offline / Guest mode. All your tasks, schedules, and streaks are stored locally on your device via SQLite. An account is only needed if you want multi-device cloud synchronization.
         </div>
       </details>
 
       <details>
         <summary>How does Deepy protect my privacy?</summary>
         <div class="faq-body">
-          We practice strict data minimization. There are zero third-party advertising SDKs, zero cross-app trackers, and all notification alerts are generated directly on your device hardware without sending schedule details to external servers.
+          Deepy includes zero third-party advertising SDKs and zero cross-app tracking. All schedule reminders and timers are generated locally by your device operating system.
         </div>
       </details>
 
       <details>
         <summary>What languages are supported?</summary>
         <div class="faq-body">
-          Deepy includes native translations for English, Vietnamese (Tiếng Việt), French (Français), Chinese (中文), Korean (한국어), and Japanese (日本語).
+          Deepy supports English, Vietnamese (Tiếng Việt), French (Français), Chinese (中文), Korean (한국어), and Japanese (日本語).
         </div>
       </details>
 
       <details>
-        <summary>What platforms does Deepy support?</summary>
+        <summary>What platforms are supported?</summary>
         <div class="faq-body">
-          Deepy is built for iOS (iPhone &amp; iPad on iOS 15.0+) and Android (Android 8.0+).
+          Deepy runs on iOS (iPhone and iPad on iOS 15.0+) and Android (Android 8.0+).
         </div>
       </details>
     </div>
   </section>
 
-  <!-- Call to Action -->
+  <!-- CTA Banner -->
   <section id="download" class="container">
     <div class="cta-box">
-      <h2>Ready to Reclaim Your Focus?</h2>
-      <p>Download Deepy today and experience the calm, uninterrupted power of deliberate deep work.</p>
-      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-        <a href="#" class="btn-primary" style="font-size: 17px; padding: 16px 32px;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.05-1.82.93-2.87-.9.04-2.02.6-2.66 1.36-.57.66-.99 1.74-.86 2.76 1.01.08 2.01-.52 2.59-1.25z"/></svg>
-          <span>Download on the App Store</span>
-        </a>
-      </div>
+      <h2>Start doing your best work today.</h2>
+      <p>Download Deepy and experience the calm, productive power of deliberate deep work.</p>
+      <a href="#" class="btn-primary" style="font-size: 16px; padding: 14px 28px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.05-1.82.93-2.87-.9.04-2.02.6-2.66 1.36-.57.66-.99 1.74-.86 2.76 1.01.08 2.01-.52 2.59-1.25z"/></svg>
+        <span>Download on App Store</span>
+      </a>
     </div>
   </section>
 
@@ -1262,14 +1184,14 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <div class="brand" style="margin-bottom: 8px;">
+          <div class="brand" style="margin-bottom: 6px;">
             <div class="brand-icon">D</div>
             <span class="brand-name">Deepy</span>
           </div>
           <p>Deliberate time-blocking, instant Mind Sweeps, and circadian energy mapping to protect your deep focus.</p>
         </div>
         <div class="footer-col">
-          <h4>Navigation</h4>
+          <h4>Product</h4>
           <ul>
             <li><a href="#features">Features</a></li>
             <li><a href="#energy-zones">Energy Zones</a></li>
@@ -1278,15 +1200,15 @@
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Legal &amp; Trust</h4>
+          <h4>Legal &amp; Support</h4>
           <ul>
             <li><a href="https://quangvietnguyen.github.io/privacy/deepy/" target="_blank" rel="noopener">Privacy Policy</a></li>
             <li><a href="https://quangvietnguyen.github.io/support/deepy/" target="_blank" rel="noopener">Customer Support</a></li>
-            <li><a href="https://quangvietnguyen.github.io/landings/">All Applications</a></li>
+            <li><a href="https://quangvietnguyen.github.io/landings/">All Products</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Languages</h4>
+          <h4>Supported Locales</h4>
           <ul>
             <li><span>🇬🇧 English</span></li>
             <li><span>🇻🇳 Tiếng Việt</span></li>
@@ -1298,7 +1220,7 @@
 
       <div class="footer-bottom">
         <span>&copy; 2026 Deepy. All rights reserved.</span>
-        <span>Crafted for deep work and high leverage output.</span>
+        <span>Crafted for deep work and high-leverage focus.</span>
       </div>
     </div>
   </footer>
